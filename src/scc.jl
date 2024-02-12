@@ -107,7 +107,7 @@ function compute_scc(m::Model = get_model();
             post_mcs_creation_function = nothing,
             pulse_size::Float64 = 1.
         )
-
+        print("ME")
     hfc_list = [:HFC23, :HFC32, :HFC43_10, :HFC125, :HFC134a, :HFC143a, :HFC227ea, :HFC245fa]
     gases_list = [:CO2, :CH4, :N2O, hfc_list ...]
 
