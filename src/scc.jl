@@ -97,8 +97,8 @@ function compute_scc(m::Model = get_model();
             gas::Symbol = :CO2,
             save_list::Vector = [],
             output_dir::Union{String, Nothing} = nothing,
-            save_md::Bool = false,
-            save_cpc::Bool = false,
+            save_md::Bool = true, # changed to true
+            save_cpc::Bool = true, # changed to true
             save_slr_damages::Bool = false,
             compute_sectoral_values::Bool = false,
             compute_domestic_values::Bool = false,
@@ -107,7 +107,7 @@ function compute_scc(m::Model = get_model();
             post_mcs_creation_function = nothing,
             pulse_size::Float64 = 1.
         )
-        print("ME")
+        println("FORKED CODE")
     hfc_list = [:HFC23, :HFC32, :HFC43_10, :HFC125, :HFC134a, :HFC143a, :HFC227ea, :HFC245fa]
     gases_list = [:CO2, :CH4, :N2O, hfc_list ...]
 
@@ -217,7 +217,7 @@ function _compute_scc(mm::MarginalModel;
     marginal_damages = main_marginal_damages .+ ciam_marginal_damages
     
     # We don't care about units here because we are only going to use ratios
-    cpc = mm.base[:global_netconsumption, :net_cpc]
+    cpc = mm.base[:global_netconsumption, :net_cpc] # seems to take net_cpc out of component
 
     if discount_rates!==nothing
         sccs = Dict{NamedTuple{(:dr_label, :prtp,:eta),Tuple{Any, Float64,Float64}}, Float64}()
